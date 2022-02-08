@@ -20,9 +20,7 @@ class Recipe(models.Model):
     description = models.TextField("Описание")
     instruction = models.TextField("Инструкция приготовления")
     poster = models.ImageField("Главное фото", upload_to="recipe_posters/")
-    ingredients = models.ManyToManyField(
-        Ingredient, verbose_name="Ингрединеты", related_name="recipe_ingredients"
-    )
+    ingredients = models.ManyToManyField(Ingredient, verbose_name="Ингрединеты")
     url = models.SlugField(max_length=100, unique=True)
     draft = models.BooleanField("Черновик", default=False)
 
@@ -42,7 +40,7 @@ class RecipeImages(models.Model):
     title = models.CharField("Название", max_length=300)
     image = models.ImageField("Фото", upload_to="recipe_images/")
     recipe = models.ForeignKey(
-        Recipe, verbose_name="Рецепт", on_delete=models.CASCADE, related_name="recipeimages"
+        Recipe, verbose_name="Рецепт", on_delete=models.CASCADE, related_name="recipe_images"
     )
 
     def __str__(self):

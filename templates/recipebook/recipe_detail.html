@@ -1,0 +1,50 @@
+{% extends 'recipebook/base.html' %}
+{% load static %}
+
+{% block title %}{{ recipe.title }}{% endblock title %}
+
+{% block container %}
+<div class="container py-md-3">
+{% endblock container %}
+
+{% block sidebar  %}
+<div class="side-bar col-lg-4">
+{% endblock sidebar  %}
+
+{% block recipe %}
+<div class="left-ads-display col-lg-8">
+    <div class="row">
+        <div class="desc1-left col-md-6">
+            <img src="{{ recipe.poster.url }}" class="img-fluid" alt="{{ recipe.title }}">
+        </div>
+        <div class="desc1-right col-md-6 pl-lg-4">
+            <h3 class="editContent">{{ recipe.title }}</h3>
+            <h5>Ингредиенты</h5>
+            <ul>
+                {% for ingredient in recipe.ingredients.all %}
+                    <li style="list-style: none">
+                        * <span>{{ ingredient.name }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="row sub-para-w3layouts mt-5">
+        <h3 class="shop-sing editContent">
+            О блюде "{{ recipe.title }}"</h3>
+        <p>
+            {% for recipe_image in recipe.recipe_images.all %}
+                <img src="{{ recipe_image.image.url }}" class="img-movie-shots" alt="{{ recipe_image.title }}">
+            {% endfor %}
+        </p>
+        <p class="editContent">{{ recipe.description|safe }}</p>
+    </div>
+
+    <h3 class="shop-sing editContent">Рецепт</h3>
+    <div class="row sub-para-w3layouts mt-5">
+        {{ recipe.instruction|safe }}
+    </div>
+    <hr>
+</div>
+
+{% endblock recipe %}
