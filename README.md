@@ -5,6 +5,11 @@
 ## Использование Docker
 
 ### Настройка проекта
+Загрузите проект в нужный репозиторий:
+
+```bash
+git clone https://github.com/VSBoiko/django_recipebook.git
+```
 
 Создайте `.env` файл в корне репозитория:
 
